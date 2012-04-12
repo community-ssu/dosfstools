@@ -1,0 +1,8 @@
+dosfstools (3.0.12-0cssu0) fremantle; urgency=low
+
+  * Pull from upstream, remaining changes:
+    - debian/patches/02_fat32_label.patch: resolve an error thrown by
+      dosfslabel when trying to label.
+
+ -- Ivaylo Dimitrov <freemangordon@abv.bg>  Tue, 12 Apr 2012 17:59:45 +0300
+

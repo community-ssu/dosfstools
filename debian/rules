@@ -1,0 +1,45 @@
+#!/usr/bin/make -f
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp
+
+	$(MAKE) distclean
+	rm -f build
+
+	dh_clean
+
+build: build-stamp
+build-stamp:
+	dh_testdir
+
+	$(MAKE) DEBUGFLAGS=-g OPTFLAGS="-O2 -fomit-frame-pointer $(shell getconf LFS_CFLAGS)"
+
+	touch build-stamp
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	dh_installdirs
+
+	$(MAKE) PREFIX=$(CURDIR)/debian/dosfstools install
+
+binary: binary-arch
+
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+	dh_strip --dbg-package=dosfstools-dbg
+	dh_compress
+	dh_fixperms
+	dh_installdeb
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary-indep:
+
+.PHONY: clean build install binary binary-arch binary-indep

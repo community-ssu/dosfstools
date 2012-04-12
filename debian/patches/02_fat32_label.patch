@@ -1,0 +1,47 @@
+Description: Fix 'dosfslabel throws "Seek to 114116076544:Invalid argument" error when labeling'
+Forwarded: no
+Author: Jaroslav Škarvada <jskarvad@redhat.com>
+Origin: vendor, https://bugzilla.redhat.com/show_bug.cgi?id=693662
+Bug-Ubuntu: https://bugs.launchpad.net/ubuntu/+source/dosfstools/+bug/794943
+Reviewed-By: Daniel T Chen <crimsun@ubuntu.com>
+Last-Update: 2011-08-20
+
+Index: trunk/src/dosfslabel.c
+===================================================================
+--- trunk.orig/src/dosfslabel.c
++++ trunk/src/dosfslabel.c
+@@ -82,7 +82,7 @@
+ 
+ int main(int argc, char *argv[])
+ {
+-    DOS_FS fs;
++    DOS_FS fs = {0};
+     rw = 0;
+ 
+     char *device = NULL;
+@@ -113,6 +113,8 @@
+ 
+     fs_open(device, rw);
+     read_boot(&fs);
++    if (fs.fat_bits == 32)
++	read_fat(&fs);
+     if (!rw) {
+ 	fprintf(stdout, "%s\n", fs.label);
+ 	exit(0);
+Index: trunk/src/fat.c
+===================================================================
+--- trunk.orig/src/fat.c
++++ trunk/src/fat.c
+@@ -86,8 +86,10 @@
+     unsigned long total_num_clusters;
+ 
+     /* Clean up from previous pass */
+-    free(fs->fat);
+-    free(fs->cluster_owner);
++    if (fs->fat)
++	free(fs->fat);
++    if (fs->cluster_owner)
++	free(fs->cluster_owner);
+     fs->fat = NULL;
+     fs->cluster_owner = NULL;
+ 
