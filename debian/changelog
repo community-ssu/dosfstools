@@ -1,4 +1,4 @@
-dosfstools (3.0.12-0cssu0) fremantle; urgency=low
+dosfstools (1:3.0.12-0cssu0) unstable; urgency=low
 
   * Pull from upstream, remaining changes:
     - debian/patches/02_fat32_label.patch: resolve an error thrown by
