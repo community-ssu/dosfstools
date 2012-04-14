@@ -1,0 +1,17 @@
+--- dosfstools-3.0.12.orig/src/dosfslabel.c
++++ dosfstools-3.0.12/src/dosfslabel.c
+@@ -112,12 +112,13 @@
+     }
+ 
+     fs_open(device, rw);
++    memset(&fs,0,sizeof(fs));
+     read_boot(&fs);
+     if (!rw) {
+ 	fprintf(stdout, "%s\n", fs.label);
+ 	exit(0);
+     }
+-
++    read_fat(&fs);
+     write_label(&fs, label);
+     fs_close(rw);
+     return 0;
