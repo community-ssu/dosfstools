@@ -1,2 +1,1 @@
 02_fat32_label.patch
-03_dosfslabel_fix_segfault_no_volume_entry.patch.diff
