@@ -1,3 +1,10 @@
+dosfstools (1:3.0.12-0cssu0.1) unstable; urgency=low
+
+  * 03_dosfslabel_fix_segfault_no_volume_entry.patch.diff
+    fix dosfslabel SIGSEGV when there is no volume directory entry 
+
+ -- Ivaylo Dimitrov <freemangordon@abv.bg>  Tue, 14 Apr 2012 11:49:33 +0300
+
 dosfstools (1:3.0.12-0cssu0) unstable; urgency=low
 
   * Pull from upstream, remaining changes:
