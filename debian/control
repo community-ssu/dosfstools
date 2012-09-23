@@ -9,7 +9,7 @@ Vcs-Git: git://gitorious.org/community-ssu/dosfstools.git
 
 Package: dosfstools
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}, kernel-feature-errata-430973-workaround [armel]
 Description: utilities for making and checking MS-DOS FAT filesystems
  The dosfstools package includes the mkdosfs (aka mkfs.dos and mkfs.vfat) and
  dosfsck (aka fsck.msdos and fsck.vfat) utilities, which respectively make and
