@@ -2,6 +2,10 @@
 
 include /usr/share/quilt/quilt.make
 
+ifneq (,$(findstring thumb,$(DEB_BUILD_OPTIONS)))
+	THUMB_CFLAGS = -mthumb
+endif
+
 clean: unpatch
 	dh_testdir
 	dh_testroot
@@ -16,7 +20,7 @@ build: patch build-stamp
 build-stamp:
 	dh_testdir
 
-	$(MAKE) DEBUGFLAGS=-g OPTFLAGS="-O2 -fomit-frame-pointer $(shell getconf LFS_CFLAGS)"
+	$(MAKE) DEBUGFLAGS=-g OPTFLAGS="-O2 $(THUMB_CFLAGS) -fomit-frame-pointer $(shell getconf LFS_CFLAGS)"
 
 	touch build-stamp
 
