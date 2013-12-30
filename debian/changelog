@@ -1,3 +1,9 @@
+dosfstools (1:3.0.12-0cssu0.3+thumb0) unstable; urgency=low
+
+  * Thumb2 compile
+
+ -- Ivaylo Dimitrov <freemangordon@abv.bg>  Mon, 30 Dec 2013 07:29:14 +0200
+
 dosfstools (1:3.0.12-0cssu0.3) unstable; urgency=low
 
   * Fix install paths
