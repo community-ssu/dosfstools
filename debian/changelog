@@ -1,3 +1,9 @@
+dosfstools (1:3.0.12-0cssu0.4) unstable; urgency=low
+
+  * Checking boot sector for dirty bit
+
+ -- Pali Rohár <pali.rohar@gmail.com>  Mon, 08 Sep 2014 10:52:50 +0200
+
 dosfstools (1:3.0.12-0cssu0.3) unstable; urgency=low
 
   * Fix install paths
