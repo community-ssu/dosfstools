@@ -1,1 +1,2 @@
 02_fat32_label.patch
+03_checking_boot_sector_for_dirty_bit.patch
